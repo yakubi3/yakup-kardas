@@ -5,6 +5,7 @@ const Skills = () => {
   const { t } = useLanguage()
   
   const skills = [
+    { name: 'Python', icon: '🐍', logo: null, level: 70, items: t.skills.items.python },
     { name: 'AutoCAD', icon: '📐', logo: '/img/autocad.png', level: 85, items: t.skills.items.autocad },
     { name: 'ANSYS', icon: '🔬', logo: '/img/ansys.png', level: 85, items: t.skills.items.ansys },
     { name: 'Excel', icon: '📊', logo: '/img/excel.png', level: 70, items: t.skills.items.excel },

@@ -42,6 +42,7 @@ export const translations = {
       title: 'Yetenekler',
       proficiency: 'Yetkinlik',
       items: {
+        python: ['Otomasyon', 'Veri Analizi', 'Scripting'],
         autocad: ['2D Çizim', '3D Modelleme', 'Teknik Resim'],
         ansys: ['FEA', 'Yapısal Analiz', 'Simülasyon'],
         excel: ['Veri Analizi', 'Formüller', 'Grafik Oluşturma'],
@@ -131,6 +132,7 @@ export const translations = {
       title: 'Skills',
       proficiency: 'Proficiency',
       items: {
+        python: ['Automation', 'Data Analysis', 'Scripting'],
         autocad: ['2D Drawing', '3D Modeling', 'Technical Drawing'],
         ansys: ['FEA', 'Structural Analysis', 'Simulation'],
         excel: ['Data Analysis', 'Formulas', 'Chart Creation'],
