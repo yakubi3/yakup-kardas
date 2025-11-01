@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const About = () => {
+  const { t } = useLanguage()
   return (
     <section id="about" className="section-container" aria-labelledby="about-heading">
       <motion.div
@@ -10,30 +12,24 @@ const About = () => {
         transition={{ duration: 0.5 }}
       >
         <h2 id="about-heading" className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">
-          Hakkımda
+          {t.about.title}
         </h2>
         
         <div className="glass-effect rounded-3xl p-8 md:p-12 space-y-6 max-w-4xl mx-auto">
           <p className="text-lg md:text-xl dark:text-white/95 text-gray-800 leading-relaxed">
-            Merhaba! Ben <span className="font-semibold text-primary-light">Yakup Kardaş</span>, 
-            Gaziantep Üniversitesi'nde makine mühendisliği okuyan bir öğrenciyim. Mekanik dizayn ve üretim 
-            süreçlerine büyük bir ilgi duyuyorum.
+            {t.about.p1}
           </p>
           
           <p className="text-lg md:text-xl dark:text-white/90 text-gray-700 leading-relaxed">
-            CAD/CAM programlarında (SolidWorks, AutoCAD, CATIA) yetkinim var ve üniversite 
-            derslerinde edindiğim bilgileri projelerimde uygulamaya çalışıyorum. 
-            Özellikle yenilenebilir enerji alanında güneş enerjisi sistemleri üzerine araştırmalar yürütüyorum.
+            {t.about.p2}
           </p>
           
           <p className="text-lg md:text-xl dark:text-white/90 text-gray-700 leading-relaxed">
-            Boş zamanlarımda kitap okumayı ve yeni teknolojileri takip etmeyi seviyorum. 
-            Sürdürülebilir enerji çözümleri ve otomasyon sistemleri ile yakından ilgileniyorum.
+            {t.about.p3}
           </p>
           
           <p className="text-lg md:text-xl dark:text-white/95 text-gray-800 leading-relaxed font-medium">
-            🎯 Hedefim, edindiğim bilgi ve becerileri kullanarak sektöre değer katmak, 
-            ailemi ve sevdiklerimi gururlandırmak.
+            {t.about.p4}
           </p>
         </div>
       </motion.div>

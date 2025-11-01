@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { LanguageProvider } from './i18n/LanguageContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -37,7 +38,7 @@ function App() {
   const toggleTheme = () => setIsDark(!isDark)
 
   return (
-    <>
+    <LanguageProvider>
       <AnimatePresence>
         {isLoading && <Loading />}
       </AnimatePresence>
@@ -54,7 +55,7 @@ function App() {
           <Footer />
         </div>
       )}
-    </>
+    </LanguageProvider>
   )
 }
 

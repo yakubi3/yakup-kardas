@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Loading.css'
 
 const Loading = () => {
+  const { t } = useLanguage()
+  
   return (
     <motion.div 
       className="loading-screen"
@@ -19,11 +22,11 @@ const Loading = () => {
           <span style={{ '--i': 5 } as React.CSSProperties}>N</span>
           <span style={{ '--i': 6 } as React.CSSProperties}>G</span>
         </div>
-        <div className="loading-subtitle">Portfolio Yükleniyor...</div>
+        <div className="loading-subtitle">{t.loading.subtitle}</div>
       </section>
       
       <footer className="loading-copyright">
-        &copy; 2025 Yakup Kardaş - Makine Mühendisi
+        &copy; 2025 Yakup Kardaş - {t.loading.copyright}
       </footer>
     </motion.div>
   )

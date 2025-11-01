@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const Hero = () => {
+  const { t } = useLanguage()
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-16 px-4">
       <div className="section-container">
@@ -36,13 +38,13 @@ const Hero = () => {
             className="space-y-4 max-w-4xl"
           >
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold">
-              Merhaba, Ben <span className="gradient-text">Yakup Kardaş</span>
+              {t.hero.greeting} <span className="gradient-text">{t.hero.name}</span>
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-light dark:text-white text-gray-800">
-              Makine Mühendisliği Öğrencisi
+              {t.hero.title}
             </h2>
             <p className="text-base sm:text-lg md:text-xl dark:text-white/90 text-gray-700 max-w-2xl mx-auto px-4 font-medium">
-              ⚙️ CAD/CAM Uzmanı | 🔧 Üretim & Tasarım | 🌱 Güneş Enerjisi Araştırmacısı
+              {t.hero.description}
             </p>
           </motion.div>
 
@@ -58,14 +60,14 @@ const Hero = () => {
               className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-light to-primary-medium rounded-full font-semibold text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-center"
               aria-label="İletişim bölümüne git"
             >
-              Benimle İletişime Geçin
+              {t.hero.contactBtn}
             </a>
             <a
               href="#projects"
               className="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold text-white hover:bg-white/20 transition-all duration-300 text-center"
               aria-label="Projeler bölümüne git"
             >
-              Projelerimi Gör
+              {t.hero.projectsBtn}
             </a>
           </motion.div>
 

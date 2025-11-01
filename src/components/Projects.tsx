@@ -1,34 +1,36 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-
-const projects = [
-  {
-    title: 'Güneş Enerjisi Sistemi',
-    description: 'Sürdürülebilir enerji üretimi için güneş enerjisi sistemleri araştırması ve prototip geliştirme.',
-    image: '/project1.jpg',
-    tags: ['Enerji', 'Araştırma', 'Sürdürülebilirlik'],
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'CAD Tasarım Projesi',
-    description: 'SolidWorks kullanarak karmaşık mekanik parçaların 3D modellenmesi ve simülasyonu.',
-    image: '/project2.jpg',
-    tags: ['CAD', 'SolidWorks', '3D Modeling'],
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'Üretim Optimizasyonu',
-    description: 'Lean Manufacturing prensipleriyle üretim süreçlerinin optimize edilmesi.',
-    image: '/project3.jpg',
-    tags: ['Lean', 'Optimizasyon', 'Üretim'],
-    github: '#',
-    demo: '#',
-  },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 const Projects = () => {
+  const { t } = useLanguage()
+  
+  const projects = [
+    {
+      title: t.projects.solarTitle,
+      description: t.projects.solarDesc,
+      image: '/project1.jpg',
+      tags: t.projects.solarTags,
+      github: '#',
+      demo: '#',
+    },
+    {
+      title: t.projects.cadTitle,
+      description: t.projects.cadDesc,
+      image: '/project2.jpg',
+      tags: t.projects.cadTags,
+      github: '#',
+      demo: '#',
+    },
+    {
+      title: t.projects.leanTitle,
+      description: t.projects.leanDesc,
+      image: '/project3.jpg',
+      tags: t.projects.leanTags,
+      github: '#',
+      demo: '#',
+    },
+  ]
   return (
     <section id="projects" className="section-container">
       <motion.div
@@ -37,7 +39,7 @@ const Projects = () => {
         viewport={{ once: true }}
       >
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">
-          Projeler
+          {t.projects.title}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -82,13 +84,13 @@ const Projects = () => {
                     href={project.github}
                     className="flex items-center gap-2 px-4 py-2 dark:bg-white/10 bg-gray-200 rounded-lg dark:hover:bg-white/20 hover:bg-gray-300 transition-all dark:text-white text-gray-800"
                   >
-                    <FaGithub /> GitHub
+                    <FaGithub /> {t.projects.github}
                   </a>
                   <a
                     href={project.demo}
                     className="flex items-center gap-2 px-4 py-2 bg-primary-light/20 rounded-lg hover:bg-primary-light/30 transition-all text-primary-light"
                   >
-                    <FaExternalLinkAlt /> Demo
+                    <FaExternalLinkAlt /> {t.projects.demo}
                   </a>
                 </div>
               </div>

@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion'
-
-const skills = [
-  { name: 'AutoCAD', icon: '📐', logo: '/img/autocad.png', level: 85, items: ['2D Çizim', '3D Modelleme', 'Teknik Resim'] },
-  { name: 'ANSYS', icon: '🔬', logo: '/img/ansys.png', level: 85, items: ['FEA', 'Yapısal Analiz', 'Simülasyon'] },
-  { name: 'Excel', icon: '📊', logo: '/img/excel.png', level: 70, items: ['Veri Analizi', 'Formüller', 'Grafik Oluşturma'] },
-  { name: 'Word', icon: '📝', logo: '/img/word.png', level: 70, items: ['Teknik Rapor', 'Dokümantasyon', 'Formatlamalar'] },
-  { name: 'SolidWorks', icon: '⚙️', logo: '/img/solidworks.png', level: 50, items: ['3D Tasarım', 'Montaj', 'Teknik Çizim'] },
-  { name: 'Üretim & İmalat', icon: '🏭', logo: null, level: 75, items: ['CNC Tezgahları', 'Torna', 'Freze', '3D Printing'] },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 const Skills = () => {
+  const { t } = useLanguage()
+  
+  const skills = [
+    { name: 'AutoCAD', icon: '📐', logo: '/img/autocad.png', level: 85, items: t.skills.items.autocad },
+    { name: 'ANSYS', icon: '🔬', logo: '/img/ansys.png', level: 85, items: t.skills.items.ansys },
+    { name: 'Excel', icon: '📊', logo: '/img/excel.png', level: 70, items: t.skills.items.excel },
+    { name: 'Word', icon: '📝', logo: '/img/word.png', level: 70, items: t.skills.items.word },
+    { name: 'SolidWorks', icon: '⚙️', logo: '/img/solidworks.png', level: 50, items: t.skills.items.solidworks },
+    { name: t.skills.items.manufacturing[0], icon: '🏭', logo: null, level: 75, items: t.skills.items.manufacturing.slice(1) },
+  ]
   return (
     <section id="skills" className="section-container">
       <motion.div
@@ -18,7 +20,7 @@ const Skills = () => {
         viewport={{ once: true }}
       >
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">
-          Yetenekler
+          {t.skills.title}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,7 +66,7 @@ const Skills = () => {
                     className="h-full bg-gradient-to-r from-primary-light to-primary-medium rounded-full"
                   />
                 </div>
-                <p className="text-sm dark:text-white/60 text-gray-600 mt-1">{skill.level}% Yetkinlik</p>
+                <p className="text-sm dark:text-white/60 text-gray-600 mt-1">{skill.level}% {t.skills.proficiency}</p>
               </div>
 
               {/* Items */}

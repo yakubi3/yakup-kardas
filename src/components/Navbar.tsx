@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa'
 import { useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 interface NavbarProps {
   toggleTheme: () => void
@@ -9,13 +10,14 @@ interface NavbarProps {
 
 const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
 
   const navItems = [
-    { name: 'Hakkımda', href: '#about' },
-    { name: 'Deneyim', href: '#experience' },
-    { name: 'Yetenekler', href: '#skills' },
-    { name: 'Projeler', href: '#projects' },
-    { name: 'İletişim', href: '#contact' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.experience, href: '#experience' },
+    { name: t.nav.skills, href: '#skills' },
+    { name: t.nav.projects, href: '#projects' },
+    { name: t.nav.contact, href: '#contact' },
   ]
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -57,6 +59,14 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
               </a>
             ))}
             
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
+              className="px-3 py-1 rounded-full glass-effect hover:bg-white/20 transition-all duration-300 font-semibold"
+            >
+              {language === 'tr' ? '🇬🇧 EN' : '🇹🇷 TR'}
+            </button>
+            
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -68,6 +78,12 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
+            <button
+              onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
+              className="px-2 py-1 rounded-full glass-effect text-sm font-semibold"
+            >
+              {language === 'tr' ? '🇬🇧' : '🇹🇷'}
+            </button>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full glass-effect"

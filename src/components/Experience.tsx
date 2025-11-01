@@ -1,31 +1,33 @@
 import { motion } from 'framer-motion'
 import { FaBriefcase, FaGraduationCap, FaLightbulb } from 'react-icons/fa'
-
-const experiences = [
-  {
-    icon: <FaGraduationCap />,
-    title: 'Gaziantep Üniversitesi',
-    subtitle: '2020 - 2025 (Devam Ediyor)',
-    type: 'Eğitim',
-    description: 'Makine Mühendisliği - Lisans\n\nİlgili Dersler:\n• Mekanik Tasarım ve CAD\n• Malzeme Bilimi ve Mühendisliği\n• İmalat Yöntemleri ve Teknolojileri\n• Mekanizma Analizi\n• Termodinamik ve Akışkanlar Mekaniği',
-  },
-  {
-    icon: <FaBriefcase />,
-    title: 'Stajyer Makine Mühendisi',
-    subtitle: 'Yaz 2023',
-    type: 'Staj Deneyimi',
-    description: '• Üretim süreçlerinin gözlemlenmesi ve analizi\n• CAD yazılımları ile teknik çizim çalışmaları\n• Kalite kontrol süreçlerine katılım\n• Ekip çalışması ve teknik dokümantasyon',
-  },
-  {
-    icon: <FaLightbulb />,
-    title: 'Güneş Enerjisi Sistemleri Araştırması',
-    subtitle: '2023 - Günümüz',
-    type: 'Araştırma Projesi',
-    description: 'Yenilenebilir enerji kaynakları ve güneş enerjisi sistemleri üzerine akademik araştırma ve geliştirme çalışmaları. Enerji verimliliği, sürdürülebilir teknolojiler ve temiz enerji çözümleri üzerine çalışmalar.',
-  },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 const Experience = () => {
+  const { t } = useLanguage()
+  
+  const experiences = [
+    {
+      icon: <FaGraduationCap />,
+      title: t.experience.edu1Title,
+      subtitle: t.experience.edu1Subtitle,
+      type: t.experience.education,
+      description: t.experience.edu1Desc,
+    },
+    {
+      icon: <FaBriefcase />,
+      title: t.experience.intern1Title,
+      subtitle: t.experience.intern1Subtitle,
+      type: t.experience.internship,
+      description: t.experience.intern1Desc,
+    },
+    {
+      icon: <FaLightbulb />,
+      title: t.experience.research1Title,
+      subtitle: t.experience.research1Subtitle,
+      type: t.experience.research,
+      description: t.experience.research1Desc,
+    },
+  ]
   return (
     <section id="experience" className="section-container">
       <motion.div
@@ -34,7 +36,7 @@ const Experience = () => {
         viewport={{ once: true }}
       >
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">
-          Deneyim & Eğitim
+          {t.experience.title}
         </h2>
 
         <div className="max-w-4xl mx-auto space-y-8">

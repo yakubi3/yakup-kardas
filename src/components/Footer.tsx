@@ -1,7 +1,9 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const { t } = useLanguage()
 
   return (
     <footer className="glass-effect border-t border-white/10 py-8">
@@ -9,7 +11,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Copyright */}
           <p className="text-white/60 text-sm">
-            © {currentYear} Yakup Kardaş. Tüm hakları saklıdır.
+            © {currentYear} Yakup Kardaş. {t.footer.rights}
           </p>
 
           {/* Social Links */}

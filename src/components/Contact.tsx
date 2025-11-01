@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
 import emailjs from '@emailjs/browser'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const Contact = () => {
+  const { t } = useLanguage()
   const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -56,21 +58,20 @@ const Contact = () => {
         viewport={{ once: true }}
       >
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">
-          İletişim
+          {t.contact.title}
         </h2>
 
         <div className="max-w-4xl mx-auto">
           <div className="glass-effect rounded-3xl p-8 md:p-12">
             <p className="text-center text-xl dark:text-white/90 text-gray-800 mb-8">
-              Benimle iletişime geçmek isterseniz aşağıdaki formu kullanabilir veya 
-              doğrudan iletişim bilgilerimden ulaşabilirsiniz.
+              {t.contact.intro}
             </p>
 
             {/* Contact Form */}
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block dark:text-white/80 text-gray-700 mb-2 font-medium">İsim</label>
+                  <label className="block dark:text-white/80 text-gray-700 mb-2 font-medium">{t.contact.name}</label>
                   <input
                     type="text"
                     name="from_name"
@@ -78,11 +79,11 @@ const Contact = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 dark:bg-white/10 bg-white dark:border-white/20 border-gray-300 border rounded-lg dark:text-white text-gray-900 dark:placeholder-white/40 placeholder-gray-500 focus:outline-none focus:border-primary-light transition-all"
-                    placeholder="Adınız Soyadınız"
+                    placeholder={t.contact.namePlaceholder}
                   />
                 </div>
                 <div>
-                  <label className="block dark:text-white/80 text-gray-700 mb-2 font-medium">Email</label>
+                  <label className="block dark:text-white/80 text-gray-700 mb-2 font-medium">{t.contact.email}</label>
                   <input
                     type="email"
                     name="reply_to"
@@ -90,12 +91,12 @@ const Contact = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 dark:bg-white/10 bg-white dark:border-white/20 border-gray-300 border rounded-lg dark:text-white text-gray-900 dark:placeholder-white/40 placeholder-gray-500 focus:outline-none focus:border-primary-light transition-all"
-                    placeholder="ornek@email.com"
+                    placeholder={t.contact.emailPlaceholder}
                   />
                 </div>
               </div>
               <div>
-                <label className="block dark:text-white/80 text-gray-700 mb-2 font-medium">Mesaj</label>
+                <label className="block dark:text-white/80 text-gray-700 mb-2 font-medium">{t.contact.message}</label>
                 <textarea
                   required
                   name="message"
@@ -103,7 +104,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 dark:bg-white/10 bg-white dark:border-white/20 border-gray-300 border rounded-lg dark:text-white text-gray-900 dark:placeholder-white/40 placeholder-gray-500 focus:outline-none focus:border-primary-light transition-all resize-none"
-                  placeholder="Mesajınızı buraya yazın..."
+                  placeholder={t.contact.messagePlaceholder}
                 />
               </div>
               
@@ -115,11 +116,11 @@ const Contact = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <span className="animate-spin">⏳</span> Gönderiliyor...
+                    <span className="animate-spin">⏳</span> {t.contact.sending}
                   </>
                 ) : (
                   <>
-                    <FaPaperPlane /> Gönder
+                    <FaPaperPlane /> {t.contact.send}
                   </>
                 )}
               </button>
@@ -131,7 +132,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-2 text-green-400 bg-green-500/20 px-4 py-3 rounded-lg"
                 >
-                  <FaCheckCircle /> Mesajınız başarıyla gönderildi! En kısa sürede dönüş yapacağım.
+                  <FaCheckCircle /> {t.contact.success}
                 </motion.div>
               )}
               
@@ -141,7 +142,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-2 text-red-400 bg-red-500/20 px-4 py-3 rounded-lg"
                 >
-                  ⚠️ Mesaj gönderilemedi. Lütfen doğrudan email veya telefon ile iletişime geçin.
+                  ⚠️ {t.contact.error}
                 </motion.div>
               )}
             </form>
@@ -149,13 +150,13 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8 border-t border-white/20">
               <div className="text-center md:text-left">
-                <p className="text-white/60 mb-1">Email</p>
+                <p className="text-white/60 mb-1">{t.contact.email}</p>
                 <a href="mailto:ykardas364@gmail.com" className="text-primary-light hover:text-white transition-colors">
                   ykardas364@gmail.com
                 </a>
               </div>
               <div className="text-center md:text-right">
-                <p className="text-white/60 mb-1">Telefon</p>
+                <p className="text-white/60 mb-1">{t.contact.phone}</p>
                 <a href="tel:+905527258590" className="text-primary-light hover:text-white transition-colors">
                   +90 552 725 85 90
                 </a>
