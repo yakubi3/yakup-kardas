@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
-import emailjs from '@emailjs/browser'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const Contact = () => {
@@ -21,18 +20,12 @@ const Contact = () => {
     setSubmitStatus('idle')
 
     try {
-      // EmailJS configuration
-      // Önce EmailJS hesabınızdan Service ID, Template ID ve Public Key almanız gerekiyor
-      // https://www.emailjs.com/ adresinden ücretsiz hesap oluşturabilirsiniz
+      // Doğrudan email yönlendirmesi
+      const mailtoLink = `mailto:ykardas364@gmail.com?subject=Portfolio İletişim: ${formData.name}&body=${encodeURIComponent(
+        `İsim: ${formData.name}\nEmail: ${formData.email}\n\nMesaj:\n${formData.message}`
+      )}`
       
-      if (formRef.current) {
-        await emailjs.sendForm(
-          'YOUR_SERVICE_ID', // EmailJS Service ID'nizi buraya ekleyin
-          'YOUR_TEMPLATE_ID', // EmailJS Template ID'nizi buraya ekleyin
-          formRef.current,
-          'YOUR_PUBLIC_KEY' // EmailJS Public Key'inizi buraya ekleyin
-        )
-      }
+      window.location.href = mailtoLink
       
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })

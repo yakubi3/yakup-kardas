@@ -64,7 +64,7 @@ const Hero = () => {
             </a>
             <a
               href="#projects"
-              className="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold text-white hover:bg-white/20 transition-all duration-300 text-center"
+              className="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold dark:text-white text-gray-900 hover:bg-white/20 dark:hover:bg-white/20 hover:bg-gray-200 transition-all duration-300 text-center border border-white/20 dark:border-white/20 border-gray-300"
               aria-label="Projeler bölümüne git"
             >
               {t.hero.projectsBtn}
