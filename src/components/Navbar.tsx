@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 
 interface NavbarProps {
@@ -10,7 +10,33 @@ interface NavbarProps {
 
 const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isResumeMenuOpen, setIsResumeMenuOpen] = useState(false)
+  const [isMobileResumeOpen, setIsMobileResumeOpen] = useState(false)
+  const resumeMenuRef = useRef<HTMLDivElement | null>(null)
   const { language, setLanguage, t } = useLanguage()
+
+  const cvUrl = `${import.meta.env.BASE_URL}cv.pdf`
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!resumeMenuRef.current) return
+      if (resumeMenuRef.current.contains(event.target as Node)) return
+      setIsResumeMenuOpen(false)
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsResumeMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   const navItems = [
     { name: t.nav.about, href: '#about' },
@@ -58,7 +84,50 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
                 {item.name}
               </a>
             ))}
-            
+
+            {/* Resume Dropdown */}
+            <div className="relative" ref={resumeMenuRef}>
+              <button
+                type="button"
+                onClick={() => setIsResumeMenuOpen((open) => !open)}
+                className="dark:text-white/90 text-gray-800 hover:text-primary-light dark:hover:text-white transition-colors duration-300 font-medium cursor-pointer"
+                aria-haspopup="menu"
+                aria-expanded={isResumeMenuOpen}
+                aria-label={t.nav.resume}
+              >
+                {t.nav.resume}
+              </button>
+
+              {isResumeMenuOpen && (
+                <div
+                  role="menu"
+                  className="absolute right-0 mt-3 w-44 rounded-xl glass-effect border border-white/10 overflow-hidden shadow-xl"
+                >
+                  <a
+                    href={cvUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 dark:text-white/90 text-gray-800 hover:bg-white/10 transition-all"
+                    role="menuitem"
+                    onClick={() => setIsResumeMenuOpen(false)}
+                    aria-label={t.nav.resumeView}
+                  >
+                    {t.nav.resumeView}
+                  </a>
+                  <a
+                    href={cvUrl}
+                    download
+                    className="block px-4 py-3 dark:text-white/90 text-gray-800 hover:bg-white/10 transition-all"
+                    role="menuitem"
+                    onClick={() => setIsResumeMenuOpen(false)}
+                    aria-label={t.nav.resumeDownload}
+                  >
+                    {t.nav.resumeDownload}
+                  </a>
+                </div>
+              )}
+            </div>
+
             {/* Language Toggle */}
             <button
               onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
@@ -66,7 +135,7 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
             >
               {language === 'tr' ? '🇬🇧 EN' : '🇹🇷 TR'}
             </button>
-            
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -84,16 +153,10 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
             >
               {language === 'tr' ? '🇬🇧' : '🇹🇷'}
             </button>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full glass-effect"
-            >
+            <button onClick={toggleTheme} className="p-2 rounded-full glass-effect">
               {isDark ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-blue-400" />}
             </button>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>
@@ -119,6 +182,47 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
                 {item.name}
               </a>
             ))}
+
+            <button
+              type="button"
+              onClick={() => setIsMobileResumeOpen((open) => !open)}
+              className="w-full text-left block px-3 py-2 rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+              aria-expanded={isMobileResumeOpen}
+              aria-label={t.nav.resume}
+            >
+              {t.nav.resume}
+            </button>
+
+            {isMobileResumeOpen && (
+              <div className="pl-3 space-y-1">
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-3 py-2 rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+                  onClick={() => {
+                    setIsMobileResumeOpen(false)
+                    setIsOpen(false)
+                  }}
+                  aria-label={t.nav.resumeView}
+                >
+                  {t.nav.resumeView}
+                </a>
+
+                <a
+                  href={cvUrl}
+                  download
+                  className="block px-3 py-2 rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+                  onClick={() => {
+                    setIsMobileResumeOpen(false)
+                    setIsOpen(false)
+                  }}
+                  aria-label={t.nav.resumeDownload}
+                >
+                  {t.nav.resumeDownload}
+                </a>
+              </div>
+            )}
           </div>
         </motion.div>
       )}

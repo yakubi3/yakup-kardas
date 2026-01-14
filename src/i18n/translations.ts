@@ -6,6 +6,9 @@ export const translations = {
       skills: 'Yetenekler',
       projects: 'Projeler',
       contact: 'İletişim',
+      resume: 'CV',
+      resumeView: 'CV Görüntüle',
+      resumeDownload: 'CV İndir',
     },
     hero: {
       greeting: 'Merhaba, Ben',
@@ -15,6 +18,8 @@ export const translations = {
       description: '⚙️ CAD/CAM Uzmanı | 🔧 Üretim & Tasarım | 🌱 Güneş Enerjisi Araştırmacısı',
       contactBtn: 'Benimle İletişime Geçin',
       projectsBtn: 'Projelerimi Gör',
+      resumeBtn: 'CV\'yi Görüntüle',
+      resumeDownloadBtn: 'CV İndir',
     },
     about: {
       title: 'Hakkımda',
@@ -96,6 +101,9 @@ export const translations = {
       skills: 'Skills',
       projects: 'Projects',
       contact: 'Contact',
+      resume: 'CV',
+      resumeView: 'View CV',
+      resumeDownload: 'Download CV',
     },
     hero: {
       greeting: 'Hello, I\'m',
@@ -105,6 +113,8 @@ export const translations = {
       description: '⚙️ CAD/CAM Expert | 🔧 Production & Design | 🌱 Solar Energy Researcher',
       contactBtn: 'Get In Touch',
       projectsBtn: 'View Projects',
+      resumeBtn: 'View CV',
+      resumeDownloadBtn: 'Download CV',
     },
     about: {
       title: 'About Me',

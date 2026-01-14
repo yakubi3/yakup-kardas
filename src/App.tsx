@@ -10,6 +10,7 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Loading from './components/Loading'
+import CircuitAnimation from './components/CircuitAnimation'
 
 function App() {
   const [isDark, setIsDark] = useState(true)
@@ -44,7 +45,9 @@ function App() {
       </AnimatePresence>
       
       {!isLoading && (
-        <div className="min-h-screen">
+        <div className="min-h-screen relative">
+          <CircuitAnimation fullPage />
+          <div className="relative z-10">
           <Navbar toggleTheme={toggleTheme} isDark={isDark} />
           <Hero />
           <About />
@@ -53,6 +56,7 @@ function App() {
           <Projects />
           <Contact />
           <Footer />
+          </div>
         </div>
       )}
     </LanguageProvider>

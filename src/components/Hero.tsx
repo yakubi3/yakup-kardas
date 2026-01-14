@@ -4,9 +4,10 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 const Hero = () => {
   const { t } = useLanguage()
+  const cvUrl = `${import.meta.env.BASE_URL}cv.pdf`
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-16 px-4">
-      <div className="section-container">
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-16 px-4 relative overflow-hidden">
+      <div className="section-container relative z-10">
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Profile Image */}
           <motion.div
@@ -68,6 +69,25 @@ const Hero = () => {
               aria-label="Projeler bölümüne git"
             >
               {t.hero.projectsBtn}
+            </a>
+
+            <a
+              href={cvUrl}
+              className="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold dark:text-white text-gray-900 hover:bg-white/20 dark:hover:bg-white/20 hover:bg-gray-200 transition-all duration-300 text-center border border-white/20 dark:border-white/20 border-gray-300"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t.hero.resumeBtn}
+            >
+              {t.hero.resumeBtn}
+            </a>
+
+            <a
+              href={cvUrl}
+              className="px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold dark:text-white text-gray-900 hover:bg-white/20 dark:hover:bg-white/20 hover:bg-gray-200 transition-all duration-300 text-center border border-white/20 dark:border-white/20 border-gray-300"
+              download
+              aria-label={t.hero.resumeDownloadBtn}
+            >
+              {t.hero.resumeDownloadBtn}
             </a>
           </motion.div>
 
