@@ -10,7 +10,7 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Loading from './components/Loading'
-import CircuitAnimation from './components/CircuitAnimation'
+import VantaNetBackground from './components/VantaNetBackground'
 
 function App() {
   const [isDark, setIsDark] = useState(true)
@@ -46,7 +46,7 @@ function App() {
       
       {!isLoading && (
         <div className="min-h-screen relative">
-          <CircuitAnimation fullPage />
+          <VantaNetBackground isDark={isDark} />
           <div className="relative z-10">
           <Navbar toggleTheme={toggleTheme} isDark={isDark} />
           <Hero />

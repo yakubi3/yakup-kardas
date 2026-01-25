@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const Projects = () => {
@@ -11,24 +10,18 @@ const Projects = () => {
       description: t.projects.solarDesc,
       image: '/project1.jpg',
       tags: t.projects.solarTags,
-      github: '#',
-      demo: '#',
     },
     {
       title: t.projects.cadTitle,
       description: t.projects.cadDesc,
       image: '/project2.jpg',
       tags: t.projects.cadTags,
-      github: '#',
-      demo: '#',
     },
     {
       title: t.projects.leanTitle,
       description: t.projects.leanDesc,
       image: '/project3.jpg',
       tags: t.projects.leanTags,
-      github: '#',
-      demo: '#',
     },
   ]
   return (
@@ -78,21 +71,7 @@ const Projects = () => {
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex gap-4 pt-4">
-                  <a
-                    href={project.github}
-                    className="flex items-center gap-2 px-4 py-2 dark:bg-white/10 bg-gray-200 rounded-lg dark:hover:bg-white/20 hover:bg-gray-300 transition-all dark:text-white text-gray-800"
-                  >
-                    <FaGithub /> {t.projects.github}
-                  </a>
-                  <a
-                    href={project.demo}
-                    className="flex items-center gap-2 px-4 py-2 bg-primary-light/20 rounded-lg hover:bg-primary-light/30 transition-all text-primary-light"
-                  >
-                    <FaExternalLinkAlt /> {t.projects.demo}
-                  </a>
-                </div>
+                {/* Links removed as requested */}
               </div>
             </motion.div>
           ))}

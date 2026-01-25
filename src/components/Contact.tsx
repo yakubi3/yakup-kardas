@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
 import { useLanguage } from '../i18n/LanguageContext'
+import emailjs from '@emailjs/browser'
 
 const Contact = () => {
   const { t } = useLanguage()
@@ -14,19 +15,38 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+  const emailJsConfig = {
+    serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined,
+    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined,
+    publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined,
+  }
+
+  const hasEmailJsConfig =
+    Boolean(emailJsConfig.serviceId) && Boolean(emailJsConfig.templateId) && Boolean(emailJsConfig.publicKey)
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
     try {
-      // Doğrudan email yönlendirmesi
-      const mailtoLink = `mailto:ykardas364@gmail.com?subject=Portfolio İletişim: ${formData.name}&body=${encodeURIComponent(
-        `İsim: ${formData.name}\nEmail: ${formData.email}\n\nMesaj:\n${formData.message}`
-      )}`
-      
-      window.location.href = mailtoLink
-      
+      // Preferred: direct email via EmailJS (works without requiring the visitor to open a mail app)
+      if (hasEmailJsConfig && formRef.current) {
+        await emailjs.sendForm(
+          emailJsConfig.serviceId as string,
+          emailJsConfig.templateId as string,
+          formRef.current,
+          emailJsConfig.publicKey as string
+        )
+      } else {
+        // Fallback: opens the visitor's email client
+        const mailtoLink = `mailto:ykardas364@gmail.com?subject=Portfolio İletişim: ${formData.name}&body=${encodeURIComponent(
+          `İsim: ${formData.name}\nEmail: ${formData.email}\n\nMesaj:\n${formData.message}`
+        )}`
+
+        window.location.href = mailtoLink
+      }
+
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
       

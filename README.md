@@ -114,7 +114,7 @@ Her component dosyasında kendi bilgilerinizi güncelleyin:
 
 ## 📧 Email Kurulumu
 
-İletişim formunu aktif etmek için EmailJS kullanılmıştır:
+İletişim formunu aktif etmek için EmailJS kullanılmıştır (önerilen):
 
 1. [EmailJS](https://www.emailjs.com/) hesabı oluşturun (ücretsiz)
 2. Email Services → Add New Service → Gmail seçin ve bağlayın
@@ -124,16 +124,17 @@ Her component dosyasında kendi bilgilerinizi güncelleyin:
 6. Proje kök dizininde `.env` dosyası oluşturun (`.env.example` referans)
 7. `Contact.tsx` dosyasında ilgili değerleri güncelleyin:
 
-```typescript
-await emailjs.sendForm(
-  'YOUR_SERVICE_ID',    // EmailJS Service ID
-  'YOUR_TEMPLATE_ID',   // EmailJS Template ID  
-  formRef.current,
-  'YOUR_PUBLIC_KEY'     // EmailJS Public Key
-)
+Projeye entegre etmek için `.env.example` dosyasını baz alarak `.env` oluşturun:
+
+```dotenv
+VITE_EMAILJS_SERVICE_ID=YOUR_SERVICE_ID
+VITE_EMAILJS_TEMPLATE_ID=YOUR_TEMPLATE_ID
+VITE_EMAILJS_PUBLIC_KEY=YOUR_PUBLIC_KEY
 ```
 
-**Not**: EmailJS kurulumu yapmadan da form çalışır, ancak email gönderilemez. Alternatif olarak doğrudan iletişim bilgileri kullanılabilir.
+Sonrasında `npm run dev` sunucusunu yeniden başlatın.
+
+**Not**: EmailJS kurulumu yapmadan da form çalışır; bu durumda ziyaretçinin mail uygulamasını açan `mailto:` fallback devreye girer.
 
 ## 🚀 Deploy
 

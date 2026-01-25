@@ -90,17 +90,17 @@ npm install
    - Dashboard → Account → API Keys
    - **Public Key**'i kopyalayın (örn: `user_1A2B3C4D5E6F`)
 
-5. **Projeye Entegre Etme**
-   - `src/components/Contact.tsx` dosyasını açın
-   - Satır 27-31 arasındaki değerleri güncelleyin:
-   ```typescript
-   await emailjs.sendForm(
-     'service_abc123',    // Your Service ID
-     'template_xyz789',   // Your Template ID
-     formRef.current,
-     'user_1A2B3C4D5E6F' // Your Public Key
-   )
+5. **Projeye Entegre Etme (.env ile)**
+   - Proje kök dizininde `.env.example` dosyası var.
+   - Aynı dizinde `.env` oluşturun ve değerleri girin:
+   ```dotenv
+   VITE_EMAILJS_SERVICE_ID=service_abc123
+   VITE_EMAILJS_TEMPLATE_ID=template_xyz789
+   VITE_EMAILJS_PUBLIC_KEY=user_1A2B3C4D5E6F
    ```
+   - Sonra dev server'ı yeniden başlatın: `npm run dev`
+
+**Not:** EmailJS tarafında template'in "To" adresini kendi mailiniz (örn: `ykardas364@gmail.com`) olacak şekilde ayarlayın.
 
 ### 4. Profil Fotoğrafı Ekleme
 - `public/profile.jpg` dosyasını kendi fotoğrafınızla değiştirin

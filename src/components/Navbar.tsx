@@ -46,6 +46,11 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
     { name: t.nav.contact, href: '#contact' },
   ]
 
+  const handleLanguageChange = (next: 'tr' | 'en') => {
+    if (next === language) return
+    setLanguage(next)
+  }
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const element = document.querySelector(href)
@@ -129,12 +134,36 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
             </div>
 
             {/* Language Toggle */}
-            <button
-              onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
-              className="px-3 py-1 rounded-full glass-effect hover:bg-white/20 transition-all duration-300 font-semibold"
+            <div
+              role="group"
+              aria-label="Dil seçimi"
+              className="flex items-center rounded-full glass-effect border border-white/10 overflow-hidden"
             >
-              {language === 'tr' ? '🇬🇧 EN' : '🇹🇷 TR'}
-            </button>
+              <button
+                type="button"
+                onClick={() => handleLanguageChange('tr')}
+                className={`px-3 py-1.5 text-sm font-semibold transition-colors ${
+                  language === 'tr'
+                    ? 'bg-primary-light/25 text-primary-dark dark:text-white'
+                    : 'dark:text-white/80 text-gray-800 hover:bg-white/10'
+                }`}
+                aria-pressed={language === 'tr'}
+              >
+                TR
+              </button>
+              <button
+                type="button"
+                onClick={() => handleLanguageChange('en')}
+                className={`px-3 py-1.5 text-sm font-semibold transition-colors ${
+                  language === 'en'
+                    ? 'bg-primary-light/25 text-primary-dark dark:text-white'
+                    : 'dark:text-white/80 text-gray-800 hover:bg-white/10'
+                }`}
+                aria-pressed={language === 'en'}
+              >
+                EN
+              </button>
+            </div>
 
             {/* Theme Toggle */}
             <button
@@ -147,12 +176,36 @@ const Navbar = ({ toggleTheme, isDark }: NavbarProps) => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
-              className="px-2 py-1 rounded-full glass-effect text-sm font-semibold"
+            <div
+              role="group"
+              aria-label="Dil seçimi"
+              className="flex items-center rounded-full glass-effect border border-white/10 overflow-hidden"
             >
-              {language === 'tr' ? '🇬🇧' : '🇹🇷'}
-            </button>
+              <button
+                type="button"
+                onClick={() => handleLanguageChange('tr')}
+                className={`px-2 py-1 text-xs font-semibold transition-colors ${
+                  language === 'tr'
+                    ? 'bg-primary-light/25 text-primary-dark dark:text-white'
+                    : 'dark:text-white/80 text-gray-800 hover:bg-white/10'
+                }`}
+                aria-pressed={language === 'tr'}
+              >
+                TR
+              </button>
+              <button
+                type="button"
+                onClick={() => handleLanguageChange('en')}
+                className={`px-2 py-1 text-xs font-semibold transition-colors ${
+                  language === 'en'
+                    ? 'bg-primary-light/25 text-primary-dark dark:text-white'
+                    : 'dark:text-white/80 text-gray-800 hover:bg-white/10'
+                }`}
+                aria-pressed={language === 'en'}
+              >
+                EN
+              </button>
+            </div>
             <button onClick={toggleTheme} className="p-2 rounded-full glass-effect">
               {isDark ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-blue-400" />}
             </button>
