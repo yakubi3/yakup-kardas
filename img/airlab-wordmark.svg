@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 512" role="img" aria-label="AIRLAB">
+  <defs>
+    <style>
+      .air { fill: #e8552f; }
+      .lab { fill: #ffffff; }
+      .word { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 800; letter-spacing: 2px; }
+      .bg { fill: #000000; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="2048" height="512" />
+
+  <!-- Approximation of the original wordmark. Background is black; AIR is orange, LAB is white. -->
+  <text class="word air" x="160" y="380" font-size="360">AIR</text>
+  <text class="word lab" x="1030" y="380" font-size="360">LAB</text>
+</svg>
