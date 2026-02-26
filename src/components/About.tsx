@@ -27,6 +27,10 @@ const About = () => {
           <p className="text-lg md:text-xl dark:text-white/90 text-gray-700 leading-relaxed">
             {t.about.p3}
           </p>
+
+          <p className="text-lg md:text-xl dark:text-white/90 text-gray-700 leading-relaxed">
+            {t.about.p5}
+          </p>
           
           <p className="text-lg md:text-xl dark:text-white/95 text-gray-800 leading-relaxed font-medium">
             {t.about.p4}

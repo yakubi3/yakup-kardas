@@ -3,14 +3,16 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 const Skills = () => {
   const { t } = useLanguage()
+  const baseUrl = import.meta.env.BASE_URL
   
   const skills = [
-    { name: 'Python', icon: '🐍', logo: '/img/python.png', level: 70, items: t.skills.items.python },
-    { name: 'AutoCAD', icon: '📐', logo: '/img/autocad.png', level: 85, items: t.skills.items.autocad },
-    { name: 'ANSYS', icon: '🔬', logo: '/img/ansys.png', level: 85, items: t.skills.items.ansys },
-    { name: 'Excel', icon: '📊', logo: '/img/excel.png', level: 70, items: t.skills.items.excel },
-    { name: 'Word', icon: '📝', logo: '/img/word.png', level: 70, items: t.skills.items.word },
-    { name: 'SolidWorks', icon: '⚙️', logo: '/img/solidworks.png', level: 50, items: t.skills.items.solidworks },
+    { name: 'Python', icon: '🐍', logo: `${baseUrl}img/python.png`, level: 70, items: t.skills.items.python },
+    { name: 'AutoCAD', icon: '📐', logo: `${baseUrl}img/autocad.png`, level: 85, items: t.skills.items.autocad },
+    { name: 'ANSYS', icon: '🔬', logo: `${baseUrl}img/ansys.png`, level: 85, items: t.skills.items.ansys },
+    { name: 'PVsyst', icon: '☀️', logo: `${baseUrl}img/pvsyst-logo.png`, level: 60, items: t.skills.items.pvSystem },
+    { name: 'Excel', icon: '📊', logo: `${baseUrl}img/excel.png`, level: 70, items: t.skills.items.excel },
+    { name: 'Word', icon: '📝', logo: `${baseUrl}img/word.png`, level: 70, items: t.skills.items.word },
+    { name: 'SolidWorks', icon: '⚙️', logo: `${baseUrl}img/solidworks.png`, level: 50, items: t.skills.items.solidworks },
     { name: t.skills.items.manufacturing[0], icon: '🏭', logo: null, level: 75, items: t.skills.items.manufacturing.slice(1) },
   ]
   return (

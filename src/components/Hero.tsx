@@ -5,6 +5,8 @@ import { useLanguage } from '../i18n/LanguageContext'
 const Hero = () => {
   const { t } = useLanguage()
   const cvUrl = `${import.meta.env.BASE_URL}cv.pdf`
+  const profileJpgUrl = `${import.meta.env.BASE_URL}profile.jpg`
+  const profileSvgUrl = `${import.meta.env.BASE_URL}profile.svg`
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-16 px-4 relative overflow-hidden">
       <div className="section-container relative z-10">
@@ -18,13 +20,13 @@ const Hero = () => {
           >
             <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-4 md:border-8 border-white/20 shadow-2xl shadow-primary-light/50 animate-glow bg-gradient-to-br from-primary-light to-primary-dark flex items-center justify-center">
               <img
-                src="/profile.jpg"
+                src={profileJpgUrl}
                 alt="Yakup Kardaş - Makine Mühendisi"
                 className="w-full h-full object-cover"
                 loading="eager"
                 onError={(e) => {
                   // Eğer fotoğraf bulunamazsa SVG placeholder göster
-                  e.currentTarget.src = '/profile.svg'
+                  e.currentTarget.src = profileSvgUrl
                 }}
               />
             </div>
