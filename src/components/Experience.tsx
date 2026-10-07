@@ -55,6 +55,7 @@ const Experience = () => {
   const gazisehirLogoPngSrc = `${import.meta.env.BASE_URL}img/gazisehir-enerji-logo.png`
   const gaziantepUniversityLogoSrc = `${import.meta.env.BASE_URL}img/gaziantep-university-mark.svg`
   const airlabWordmarkSrc = `${import.meta.env.BASE_URL}img/airlab-wordmark.svg`
+  const turkozLogoSrc = `${import.meta.env.BASE_URL}img/turkoz-logo.png`
 
   const experiences: ExperienceItem[] = [
     {
@@ -76,6 +77,17 @@ const Experience = () => {
       description: t.experience.gazisehirDesc,
       logoSrc: gazisehirLogoPngSrc,
       logoAlt: t.experience.gazisehirTitle,
+    },
+    {
+      icon: <FaBriefcase />,
+      title: t.experience.turkozTitle,
+      subtitle: t.experience.turkozSubtitle,
+      type: t.experience.internship,
+      description: t.experience.turkozDesc,
+      logoSrc: turkozLogoSrc,
+      logoAlt: t.experience.turkozTitle,
+      badgeWrapperClassName: 'w-14 h-14 flex items-center justify-center rounded-lg overflow-hidden bg-white',
+      logoClassName: 'w-full h-full object-contain object-center p-1',
     },
     {
       icon: <FaBolt />,
